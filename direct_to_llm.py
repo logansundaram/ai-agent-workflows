@@ -1,13 +1,20 @@
 from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage, SystemMessage
+
+from secret_config import character
+
 
 llm = ChatOllama(model="Qwen2.5-coder:14B", temperature=0)
 
+
+sys_msg = SystemMessage(content=character)
+
+
 message = [
     (
-        "system",
-        "You are a helpful assistant that excels at understanding and writing code.",
+        sys_msg
     ),
-    ("human", "write me a python function that determines if a number is prime or not"),
+    ("human", "hi"),
 ]
 
 llm_response = llm.invoke(message)
